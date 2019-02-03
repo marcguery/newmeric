@@ -82,7 +82,7 @@ class Numer(object):
 		if easygui.ccbox("Do you want to save your draw ?", title="Newmeric is waiting for you..."):
 			num=easygui.integerbox(msg='Which number did you draw ?', title='Newmeric is waiting for you...', 
 			default=0, lowerbound=0, upperbound=9)
-			filename="draws"+str(num)+".csv"
+			filename="res/draws"+str(num)+".csv"
 			self.save_draw(filename)
 			print("Your draw has been saved in %s !" % filename)
 		else:

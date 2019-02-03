@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 import matplotlib.pyplot as plt
 import numpy as np
 import time
@@ -41,9 +40,9 @@ class Numer(object):
 		self.coords=np.zeros((self.ranx, self.rany))
 		self.nice_trick_bro()
 
-	def save_draw(self, file="draws.csv"):
+	def save_draw(self, file="draws.csv", foot="#"):
 		with open(file, "a") as fdraw:
-			np.savetxt(fdraw, self.coords, delimiter=",")
+			np.savetxt(fdraw, self.coords, delimiter=",", footer=foot)
 		fdraw.close
 	
 	def update_data(self, event):
@@ -100,6 +99,3 @@ class Numer(object):
 		self.fig.canvas.mpl_connect("key_press_event", self.key)
 		self.fig.canvas.mpl_connect('button_press_event', self.button)
 		plt.show()
-
-drawtest=Numer(x=100, y=100, size=3)
-drawtest.draw()

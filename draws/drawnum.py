@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 import numpy as np
-import time
 import math
 import easygui
 
@@ -50,18 +49,18 @@ class Numer(object):
 		ymou = int(event.xdata)
 		if self.coords[xmou][ymou]>0.8:
 			return
-		interx=max(int(self.ranx // (1/self.size*100) + 1), 2)
-		intery=max(int(self.rany // (1/self.size*100) + 1), 2)
-		maxx=min(xmou+interx-1, self.ranx)
-		minx=max(xmou-interx+1, 0)
-		maxy=min(ymou+intery-1, self.rany)
-		miny=max(ymou-intery+1, 0)
-		for xare in range(minx, maxx+1):
-			normx = (maxx-xmou) - math.fabs(xare-xmou)
-			valx = normx/(maxx-xmou)
-			for yare in range(miny, maxy+1):
-				normy = (maxy-ymou) - math.fabs(yare-ymou)
-				valy = normy/(maxy-ymou)
+		interx=max(int(self.ranx // (1/self.size*100) + 1), 2) - 1 #minus 1 to make it cross-like
+		intery=max(int(self.rany // (1/self.size*100) + 1), 2) - 1 #minus 1 to make it cross-like
+		maxx=min(xmou+interx, self.ranx - 1)
+		minx=max(xmou-interx, 0)
+		maxy=min(ymou+intery, self.rany - 1)
+		miny=max(ymou-intery, 0)
+		for xare in range(minx, maxx + 1):
+			normx = interx - math.fabs(xare-xmou)
+			valx = normx/interx
+			for yare in range(miny, maxy + 1):
+				normy = intery - math.fabs(yare-ymou)
+				valy = normy/intery
 				self.coords[xare][yare]=min(self.coords[xare][yare]+(valx+valy)/3, 1)
 
 	def hover(self, event):
